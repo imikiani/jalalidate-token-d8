@@ -1,0 +1,277 @@
+<?php
+
+/**
+ * @file
+ * Provides tokens related to Jalali date.
+ * 
+ * You can use the tokens for example in a block and have a customized calendar.
+ */
+
+use Drupal\jalalidate_token\Date;
+
+/*
+ * Implements hook_token_info()
+ */ 
+function jalalidate_token_token_info(){
+  $type = array(
+    'name' => t('Jalali Date'),
+    'description' => 'Tokens related to Jalali date',
+    'needs-data' => 'jalalidate',
+  );
+
+  $jalalidate['Format-a'] = array(
+    'name' => 'Format-a',
+    'description' => 'Lowercase Ante meridiem and Post meridiem      am or pm',
+  );
+  $jalalidate['Format-A'] = array(
+    'name' => 'Format-A',
+    'description' => 'Uppercase Ante meridiem and Post meridiem     AM or PM',
+  );
+  $jalalidate['Format-d'] = array(
+    'name' => 'Format-d',
+    'description' => 'days from 01 to 31',
+  );
+  $jalalidate['Format-D'] = array(
+    'name' => 'Format-D',
+    'description' => 'days --short-- from ش to ج',
+  );
+  $jalalidate['Format-j'] = array(
+    'name' => 'Format-j',
+    'description' => 'days from 1 to 31',
+  );
+  $jalalidate['Format-l'] = array(
+    'name' => 'Format-l',
+    'description' => '(lowercase \'L\'): days from شنبه to جمعه',
+  );
+  $jalalidate['Format-N'] = array(
+    'name' => 'Format-N',
+    'description' => 'number of day in week from 1 (شنبه) to 7 (جمعه)',
+  );
+  $jalalidate['Format-w'] = array(
+    'name' => 'Format-w',
+    'description' => 'number of day in week',
+  );
+  $jalalidate['Format-S'] = array(
+    'name' => 'Format-S',
+    'description' => "month days from یکم to سی و یکم \nthis is slightly different from php.date()!",
+  );
+  $jalalidate['Format-z'] = array(
+    'name' => 'Format-z',
+    'description' => 'day in the year',
+  );
+  $jalalidate['Format-W'] = array(
+    'name' => 'Format-W',
+    'description' => 'week in the year',
+  );
+  $jalalidate['Format-F'] = array(
+    'name' => 'Format-F',
+    'description' => 'Month name from قروردین to اسفند',
+  );
+  $jalalidate['Format-m'] = array(
+    'name' => 'Format-m',
+    'description' => 'Month number from 01 to 12',
+
+  );  $jalalidate['Formst-M'] = array(
+    'name' => 'Format-M',
+    'description' => 'month from فرو to اسف',
+  );
+  $jalalidate['Format-n'] = array(
+    'name' => 'Format-n',
+    'description' => 'Month number from 1 to 12',
+  );
+  $jalalidate['Format-Y'] = array(
+    'name' => 'Format-Y',
+    'description' => 'full year numeric representation -- 4 digit',
+  );
+  $jalalidate['Format-y'] = array(
+    'name' => 'Format-y',
+    'description' => 'year numeric representation -- 2 digit',
+  );
+  $jalalidate['Format-g'] = array(
+    'name' => 'Format-g',
+    'description' => '12-hour format of an hour without leading zeros     1 through 12',
+  );
+  $jalalidate['Format-G'] = array(
+    'name' => 'Format-G',
+    'description' => '24-hour format of an hour without leading zeros     0 through 23',
+  );
+
+  $jalalidate['Format-h'] = array(
+    'name' => 'Format-h',
+    'description' => '12-hour format of an hour with leading zeros     01 through 12',
+  );  
+  $jalalidate['Format-H'] = array(
+    'name' => 'Format-H',
+    'description' => '24-hour format of an hour with leading zeros     00 through 23',
+  );
+  $jalalidate['Format-i'] = array(
+    'name' => 'Format-i',
+    'description' => 'Minutes with leading zeros     00 to 59',
+  );
+  $jalalidate['Format-s'] = array(
+    'name' => 'Format-s',
+    'description' => 'Seconds, with leading zeros     00 through 59',
+  );
+  $jalalidate['Format-T'] = array(
+    'name' => 'Format-T',
+    'description' => 'Timezone abbreviation     Examples: EST, MDT ...',
+  );
+  $jalalidate['Format-U'] = array(
+    'name' => 'Format-U',
+    'description' => 'Seconds since the Unix Epoch See also time()',
+  );
+  $jalalidate['Format-L'] = array(
+    'name' => 'Format-L',
+    'description' => 'whether it\'s a leap year',
+  );
+  $jalalidate['Format-I'] = array(
+    'name' => 'Format-I',
+    'description' => "(capital i) Whether or not the date is in daylight saving time 1 if\nDaylight Saving Time, 0 otherwise.",
+  );
+  $jalalidate['Format-O'] = array(
+    'name' => 'Format-O',
+    'description' => 'Difference to Greenwich time (GMT) in hours     Example: +0200',
+  );
+  $jalalidate['Format-P'] = array(
+    'name' => 'Format-P',
+    'description' => 'Difference to Greenwich time (GMT) with colon',
+  );
+  $jalalidate['Format-Z'] = array(
+    'name' => 'Format-Z',
+    'description' => 'Timezone offset in seconds. The offset for timezones west of UTC is ',
+  );
+  $jalalidate['Format-c'] = array(
+    'name' => 'Format-c',
+    'description' => 'ISO 8601 date (added in PHP 5)     2004-02-12T15:19:21+00:00',
+  );
+  $jalalidate['Format-r'] = array(
+    'name' => 'Format-r',
+    'description' => '» RFC 2822 formatted date    Example: Thu, 21 Dec 2000 16:01:07 +0200',
+  );
+  $jalalidate['Format-e'] = array(
+    'name' => 'Format-e',
+    'description' => 'Timezone identifier (added in PHP 5.1.0) Examples: GMT, Atlantic/Azores',
+  );
+
+  return array(
+    'types' => array('jalalidate' => $type),
+    'tokens' => array('jalalidate' => $jalalidate),
+  );
+} 
+
+
+/*
+ * Implements hook_tokens()
+ */
+function jalalidate_token_tokens($type, $tokens, array $data = array(), array $options = array()){
+  $replacements = array();
+  if($type == 'jalalidate'){    
+    
+    $jalali = new Date;
+
+    foreach($tokens as $name => $original){
+      switch($name){
+        case "Format-a" : 
+        $replacements[$original] = $jalali->format('a');
+        break; 
+        case "Format-A" : 
+        $replacements[$original] = $jalali->format('A');
+        break;       
+        case "Format-d" : 
+        $replacements[$original] = $jalali->format('d');
+        break;  
+        case "Format-D" : 
+        $replacements[$original] = $jalali->format('D');
+        break;  
+        case "Format-j" : 
+        $replacements[$original] = $jalali->format('j');
+        break;  
+        case "Format-l" : 
+        $replacements[$original] = $jalali->format('l');
+        break;  
+        case "Format-N" : 
+        $replacements[$original] = $jalali->format('N');
+        break;  
+        case "Format-w" : 
+        $replacements[$original] = $jalali->format('w');
+        break;  
+        case "Format-S" : 
+        $replacements[$original] = $jalali->format('S');
+        break;  
+        case "Format-z" : 
+        $replacements[$original] = $jalali->format('z');
+        break;  
+        case "Format-W" : 
+        $replacements[$original] = $jalali->format('W');
+        break;  
+        case "Format-F" : 
+        $replacements[$original] = $jalali->format('F');
+        break;   
+        case "Format-m" : 
+        $replacements[$original] = $jalali->format('m');
+        break;   
+        case "Format-M" : 
+        $replacements[$original] = $jalali->format('M');
+        break;   
+        case "Format-n" : 
+        $replacements[$original] = $jalali->format('n');
+        break;   
+        case "Format-Y" : 
+        $replacements[$original] = $jalali->format('Y');
+        break;   
+        case "Format-y" : 
+        $replacements[$original] = $jalali->format('y');
+        break;   
+        case "Format-g" : 
+        $replacements[$original] = $jalali->format('g');
+        break;   
+        case "Format-G" : 
+        $replacements[$original] = $jalali->format('G');
+        break;   
+        case "Format-h" : 
+        $replacements[$original] = $jalali->format('h');
+        break;   
+        case "Format-H" : 
+        $replacements[$original] = $jalali->format('H');
+        break;   
+        case "Format-i" : 
+        $replacements[$original] = $jalali->format('i');
+        break;   
+        case "Format-s" : 
+        $replacements[$original] = $jalali->format('s');
+        break;   
+        case "Format-T" : 
+        $replacements[$original] = $jalali->format('T');
+        break;   
+        case "Format-U" : 
+        $replacements[$original] = $jalali->format('U');
+        break;   
+        case "Format-L" : 
+        $replacements[$original] = $jalali->format('L');
+        break;   
+        case "Format-I" : 
+        $replacements[$original] = $jalali->format('I');
+        break;   
+        case "Format-O" : 
+        $replacements[$original] = $jalali->format('O');
+        break;   
+        case "Format-P" : 
+        $replacements[$original] = $jalali->format('P');
+        break;   
+        case "Format-Z" : 
+        $replacements[$original] = $jalali->format('Z');
+        break;   
+        case "Format-c" : 
+        $replacements[$original] = $jalali->format('c');
+        break;   
+        case "Format-r" : 
+        $replacements[$original] = $jalali->format('r');
+        break;   
+        case "Format-e" : 
+        $replacements[$original] = $jalali->format('e');
+        break;        
+      }   
+    }
+  }  
+  return $replacements;
+}

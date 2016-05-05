@@ -1,0 +1,5 @@
+name: Jalalidate Token
+type: module
+description: Provides a tokenized Jalali date that you can use it all over of your Drupal.
+core: 8.x
+package: persiantools
